@@ -9,10 +9,12 @@ import kosgebProject.entities.BankUser;
 import kosgebProject.entities.BlackList;
 import kosgebProject.entities.Credit;
 import kosgebProject.entities.CreditFeature;
+import kosgebProject.entities.Department;
 import kosgebProject.entities.Employee;
 import kosgebProject.entities.EnterPreneur;
 import kosgebProject.entities.Enterprise;
 import kosgebProject.entities.Feature;
+import kosgebProject.entities.Permission;
 import kosgebProject.entities.State;
 import kosgebProject.entities.Title;
 import kosgebProject.entities.TitlePermission;
@@ -44,7 +46,21 @@ public class Main {
 		Credit credit1 = new Credit(1, "Erzurum Kredisi", LocalDate.parse("2022-09-02"),  applications, creditFeatures);
 		Credit credit2 = new Credit(2, "Yüzbin Kobi Kredisi", LocalDate.parse("2022-09-02"), applications, creditFeatures1);
 		
+		Permission permission1 = new Permission(1, "Kredi Sorgulama", titlePermissions);
+		Permission permission2 = new Permission(2, "Kredi Onaylama", titlePermissions);
+		
 		Title title = new Title(1,"Müdür",employees,titlePermissions);
+		
+		TitlePermission titlePermission1 = new TitlePermission(1, title, permission1);
+		TitlePermission titlePermission2 = new TitlePermission(2, title, permission2);
+		
+		titlePermissions.add(titlePermission1);
+		titlePermissions.add(titlePermission2);
+		
+		Department department =new Department(1,"Banka Þube",employees);
+		Employee employee = new Employee(1,"sedat@email","55210","Ankara/Çankaya",title,department,"1254",bankUsers);
+		
+		System.out.println(employee.getRegistrationNumber()+" : "+employee.getTitle().getTitlePermissions().get(0).getPermission().getName());
 		
 		Feature feature1 = new Feature(1,"il","Erzurum",creditFeatures);
 		Feature feature2 = new Feature(2,"alt limit","15000",creditFeatures);
